@@ -1,0 +1,3 @@
+module.exportso = {
+    secret: 'abcdefghijklmnopqr'
+}

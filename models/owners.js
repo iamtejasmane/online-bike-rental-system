@@ -1,4 +1,3 @@
-
 module.exports = (sequlize, type) => {
     return sequlize.define('customers', {
         custId: {

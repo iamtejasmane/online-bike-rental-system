@@ -1,11 +1,12 @@
 const Sequelize = require('sequelize')
 
-const PORT = process.env.PORT || "33090"
-const HOST = process.env.HOST || "192.168.10.10"
+const PORT = process.env.PORT || "3306"
+const HOST = process.env.HOST || "127.0.0.1"
 
 const custModel = require('./models/customers')
+const ownModel = require('./models/owners')
 // TODO: ownerModel
-const sequelize = new Sequelize("bikes", "root", "password", {
+const sequelize = new Sequelize("bikes", "root", "manager", {
     host: HOST,
     port: PORT,
     dialect: "mysql",
@@ -27,6 +28,7 @@ const sequelize = new Sequelize("bikes", "root", "password", {
   })
 
   const Customers = custModel(sequelize, Sequelize)
+  const Owners = ownModel(sequelize, Sequelize)
   // TODO: same
 
   sequelize.sync({ force: false }).then(() => {
@@ -34,7 +36,8 @@ const sequelize = new Sequelize("bikes", "root", "password", {
 })
 
 module.exports = {
-  Customers: Customers
+  Customers: Customers,
   // todo: owner
+   Owners: Owners
 }
 

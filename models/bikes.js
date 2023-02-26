@@ -5,6 +5,7 @@ module.exports = (sequlize, type) => {
             primaryKey: true,
             autoIncrement: true
         },
+        cityId: type.INTEGER,
         ownerId:type.INTEGER,
         bikeNo: type.STRING,
         bikeCompName: type.STRING,

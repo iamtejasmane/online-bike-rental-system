@@ -10,6 +10,7 @@ const DB_PASSWORD = process.env.DB_PASSWORD || "manager"
 const custModel = require('./models/customers')
 const ownModel = require('./models/owners')
 const bikeModel=require('./models/bikes')
+const cityModel=require('./models/city')
 
 // TODO: ownerModel
 const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
@@ -36,6 +37,7 @@ const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
   const Customers = custModel(sequelize, Sequelize)
   const Owners = ownModel(sequelize, Sequelize)
   const Bikes = bikeModel(sequelize, Sequelize)
+  const Cities = cityModel(sequelize, Sequelize)
 
   Owners.hasMany(Bikes, { foreignKey: "ownerId"})
 
@@ -46,6 +48,7 @@ const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
 module.exports = {
   Customers: Customers,
    Owners: Owners,
-   Bikes: Bikes
+   Bikes: Bikes,
+   Cities: Cities
 }
 

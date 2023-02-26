@@ -1,6 +1,6 @@
 module.exports = (sequelize , type)=>{
     return sequelize.define('cities',{
-        id:{
+        cityId:{
             type : type.INTEGER,
             primaryKey : true,
             autoIncrement : true

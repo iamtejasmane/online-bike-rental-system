@@ -1,6 +1,8 @@
 const express = require("express")
 const { Bikes } = require("../sequelize")
 const utils = require("../utils")
+const multer = require("multer")
+const upload = multer({ dest: "uploads/" })
 
 const router = express.Router()
 
@@ -27,7 +29,7 @@ router.get("/:id", (req, res) => {
 })
 
 // create bike api
-router.post("/", (req, res) => {
+router.post("/", upload.single("file"), (req, res) => {
   const {
     bikeNo,
     bikeCompName,
@@ -37,6 +39,8 @@ router.post("/", (req, res) => {
     mileage,
     fuelTankCapacity,
     availability,
+    price_per_day,
+    cityId,
   } = req.body
 
   Bikes.create({
@@ -48,6 +52,8 @@ router.post("/", (req, res) => {
     mileage: mileage,
     fuelTankCapacity: fuelTankCapacity,
     availability: availability,
+    price_per_day: price_per_day,
+    cityId: cityId,
   })
     .then((bikes) => {
       res.send(utils.createResult(null, bikes))

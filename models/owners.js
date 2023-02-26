@@ -1,19 +1,16 @@
 module.exports = (sequlize, type) => {
-    return sequlize.define('customers', {
-        custId: {
+    return sequlize.define('owners', {
+        ownerId: {
             type: type.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
-        custEmail: type.STRING,
-        custFirstName: type.STRING,
-        custLastName: type.STRING,
-        custPhoneNo: type.STRING,
+        ownEmail: type.STRING,
+        ownFirstName: type.STRING,
+        ownLastName: type.STRING,
+        ownPhoneNo: type.STRING,
         avatar: type.STRING,
-        custLicenseNo: type.STRING,
-        custUniqueId: type.STRING,
-        address: type.STRING,
-        city: type.STRING,
-        pincode: type.STRING,
+        address: type.STRING
+        
     })
 }

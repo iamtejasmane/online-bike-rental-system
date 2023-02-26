@@ -1,6 +1,6 @@
 // copy the code from customers and make changes
 const express = require('express')
-const { owners } = require("../sequelize")
+const { Owners } = require("../sequelize")
 const utils = require("../utils")
 const crypto = require("crypto-js")
 const jwt = require('jsonwebtoken')

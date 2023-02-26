@@ -10,7 +10,5 @@ module.exports = (sequlize, type) => {
         ownLastName: type.STRING,
         ownPhoneNo: type.STRING,
         avatar: type.STRING,
-        address: type.STRING
-        
     })
 }

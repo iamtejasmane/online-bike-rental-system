@@ -29,7 +29,7 @@ router.get("/:id", (req, res) => {
 })
 
 // create bike api
-router.post("/", upload.single("file"), (req, res) => {
+router.post("/:id", upload.single("file"), (req, res) => {
   const {
     bikeNo,
     bikeCompName,
@@ -44,6 +44,7 @@ router.post("/", upload.single("file"), (req, res) => {
   } = req.body
 
   Bikes.create({
+    ownerId: req.params.id,
     bikeNo: bikeNo,
     bikeCompName: bikeCompName,
     bikeModelName: bikeModelName,

@@ -24,8 +24,8 @@ router.post('/signup',(req, res)=>{
         address: address,
         city: city,
         pincode: pincode
-    }).then((user) => {
-        res.send(utils.createResult(null, user))
+    }).then((customer) => {
+        res.send(utils.createResult(null, customer))
     }).catch((err) =>{
         res.send(utils.createResult(err, null))
     })
@@ -33,19 +33,23 @@ router.post('/signup',(req, res)=>{
 
 
 router.post('/signin',(req, res)=>{
-    const {email, password} = req.body
+    const { email, password } = req.body
     const encryptedPassword = crypto.SHA256(password) + ""
     const result = {}
+   
     return Customers.findOne({where : {custEmail : email, password: encryptedPassword}}).then(customer =>{
-        const token = jwt.sign({id : user['custId']}, SECRET)
+        console.log(customer)
+        const token = jwt.sign({id : customer['custId']}, SECRET)
+        
         result['status'] = 'success'
         result['data'] = {
-            custFirstName : user['firstName'],
-            custLastName : user['lastName'],
+            custFirstName : customer['firstName'],
+            custLastName : customer['lastName'],
             token : token
         }
         res.json(result)
     }).catch(err =>{
+        console.log(err)
         result['status'] = 'error'
         result['data'] = err
         res.send(result)

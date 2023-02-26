@@ -4,6 +4,7 @@ const { Owners } = require("../sequelize")
 const utils = require("../utils")
 const crypto = require("crypto-js")
 const jwt = require('jsonwebtoken')
+const owners = require('../models/owners')
 
 const router = express.Router()
 
@@ -22,6 +23,30 @@ router.post('/signup',(req, res)=>{
         res.send(utils.createResult(null, user))
     }).catch((err) =>{
         res.send(utils.createResult(err, null))
+    })
+})
+
+router.post('/signin',(req, res)=>{
+    const { email, password } = req.body
+    const encryptedPassword = crypto.SHA256(password) + ""
+    const result = {}
+   
+    return Owners.findOne({where : {ownEmail : email, password: encryptedPassword}}).then(owner =>{
+        console.log(owner)
+        const token = jwt.sign({id : owner['ownerId']}, SECRET)
+        
+        result['status'] = 'success'
+        result['data'] = {
+            ownFirstName : owner['firstName'],
+            ownLastName : owner['lastName'],
+            token : token
+        }
+        res.json(result)
+    }).catch(err =>{
+        console.log(err)
+        result['status'] = 'error'
+        result['data'] = err
+        res.send(result)
     })
 })
 

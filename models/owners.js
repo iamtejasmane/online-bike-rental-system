@@ -6,6 +6,7 @@ module.exports = (sequlize, type) => {
             autoIncrement: true
         },
         ownEmail: type.STRING,
+        password: type.STRING,
         ownFirstName: type.STRING,
         ownLastName: type.STRING,
         ownPhoneNo: type.STRING,

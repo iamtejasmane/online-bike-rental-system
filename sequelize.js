@@ -37,7 +37,7 @@ const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
   const Owners = ownModel(sequelize, Sequelize)
   // TODO: same
 
-  sequelize.sync({ force: false }).then(() => {
+  sequelize.sync({ force: true }).then(() => {
   console.log("Database synced")
 })
 

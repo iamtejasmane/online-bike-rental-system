@@ -1,3 +1,3 @@
 module.exportso = {
-    secret: 'abcdefghijklmnopqr'
+  secret: "abcdefghijklmnopqr",
 }

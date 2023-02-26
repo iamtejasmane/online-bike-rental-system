@@ -35,7 +35,9 @@ const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
 
   const Customers = custModel(sequelize, Sequelize)
   const Owners = ownModel(sequelize, Sequelize)
-  // TODO: same
+  const Bikes = bikeModel(sequelize, Sequelize)
+
+  Owners.hasMany(Bikes, { foreignKey: "ownerId"})
 
   sequelize.sync({ force: true }).then(() => {
   console.log("Database synced")
@@ -43,7 +45,7 @@ const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
 
 module.exports = {
   Customers: Customers,
-  // todo: owner
-   Owners: Owners
+   Owners: Owners,
+   Bikes: Bikes
 }
 

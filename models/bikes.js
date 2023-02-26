@@ -8,11 +8,11 @@ module.exports = (sequlize, type) => {
         ownerId:type.INTEGER,
         bikeNo: type.STRING,
         bikeCompName: type.STRING,
+        bikeModelName: type.STRING,
         bikeInsuranceNo: type.STRING,
         engineCapacity: type.STRING,
         mileage: type.STRING,
         fuelTankCapacity: type.STRING,
-        availability: type.boolean
-        
+        availability: type.BOOLEAN
     })
 }

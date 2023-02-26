@@ -10,7 +10,7 @@ const router = express.Router()
 router.post('/signup',(req, res)=>{
     const { ownPhoneNo, ownEmail, password, ownFirstName, ownLastName, avatar, address} = req.body
     const encryptedPassword = crypto.SHA256(password) + ""
-    return Owners.create({
+    Owners.create({
         ownPhoneNo : ownPhoneNo,
         ownEmail : ownEmail,
         password : encryptedPassword,

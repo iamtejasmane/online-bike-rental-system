@@ -37,7 +37,7 @@ router.post('/signin',(req, res)=>{
     const encryptedPassword = crypto.SHA256(password) + ""
     const result = {}
    
-    return Customers.findOne({where : {custEmail : email, password: encryptedPassword}}).then(customer =>{
+    Customers.findOne({where : {custEmail : email, password: encryptedPassword}}).then(customer =>{
         console.log(customer)
         const token = jwt.sign({id : customer['custId']}, SECRET)
         

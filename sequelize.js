@@ -1,12 +1,17 @@
 const Sequelize = require('sequelize')
+require("dotenv").config()
 
 const PORT = process.env.PORT || "3306"
 const HOST = process.env.HOST || "127.0.0.1"
+const DB_NAME = process.env.DB_NAME || "bikes"
+const DB_USER = process.env.DB_USER || "root"
+const DB_PASSWORD = process.env.DB_PASSWORD || "manager"
 
 const custModel = require('./models/customers')
 const ownModel = require('./models/owners')
+
 // TODO: ownerModel
-const sequelize = new Sequelize("bikes", "root", "manager", {
+const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
     host: HOST,
     port: PORT,
     dialect: "mysql",

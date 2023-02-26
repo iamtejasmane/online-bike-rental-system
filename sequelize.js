@@ -10,6 +10,7 @@ const DB_PASSWORD = process.env.DB_PASSWORD || "manager"
 const custModel = require('./models/customers')
 const ownModel = require('./models/owners')
 const bikeModel=require('./models/bikes')
+const cityModel=require('./models/city')
 
 // TODO: ownerModel
 const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
@@ -36,16 +37,18 @@ const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
   const Customers = custModel(sequelize, Sequelize)
   const Owners = ownModel(sequelize, Sequelize)
   const Bikes = bikeModel(sequelize, Sequelize)
+  const Cities = cityModel(sequelize, Sequelize)
 
   Owners.hasMany(Bikes, { foreignKey: "ownerId"})
 
-  sequelize.sync({ force: false }).then(() => {
+  sequelize.sync({ force: true }).then(() => {
   console.log("Database synced")
 })
 
 module.exports = {
   Customers: Customers,
    Owners: Owners,
-   Bikes: Bikes
+   Bikes: Bikes,
+   Cities: Cities
 }
 

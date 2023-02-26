@@ -4,6 +4,7 @@ const morgan = require('morgan')
 
 const routeCustomer = require('./routes/customers')
 const routeOwner=require('./routes/owners')
+const routeCity=require('./routes/cities')
 // todo: route
 
 const app = express()
@@ -14,6 +15,7 @@ app.use(morgan('combined'))
 
 app.use('/customers', routeCustomer)
 app.use('/owners', routeOwner)
+app.use('/cities', routeCity)
 // todo: app.use owner
 
 app.listen(4000, () => {

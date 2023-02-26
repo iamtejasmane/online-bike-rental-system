@@ -9,6 +9,7 @@ const DB_PASSWORD = process.env.DB_PASSWORD || "manager"
 
 const custModel = require('./models/customers')
 const ownModel = require('./models/owners')
+const bikeModel=require('./models/bikes')
 
 // TODO: ownerModel
 const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
